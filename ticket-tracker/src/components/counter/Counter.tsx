@@ -24,7 +24,9 @@ if (counter === 0) {
     <div className="counter">
       <img src={minus} alt="" className="counter__control--minus" onClick={handleDecrement}/>
     <img />
-    {counter}
+    <div id="counter__display">
+      {counter}
+    </div>
     <img src={plus} alt="" className="counter__control--plus" onClick={handleIncrement}/>
     </div>
   );

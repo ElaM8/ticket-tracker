@@ -1,0 +1,17 @@
+.employee-card {
+  background-color: rgb(20, 44, 91);
+  width: 200px;
+  #employee-card__name {
+    font-weight: bold;
+    font-size: x-large;
+  }
+  #employee-card__role {
+    font-weight: normal;
+  }
+}
+
+// <div className="employee-card"><h2 id="employee-card__name"> {
+//   name
+// }
+
+// </h2><h2 id="employee-card__role"

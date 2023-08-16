@@ -1,21 +1,22 @@
 import { useState } from "react"
-import employee from '../../data/types/Employee'
+// import employee from '../../data/types/Employee'
 import './EmployeeCard.scss'
-import Counter from "../counter/Counter";
+import Counter from "../Counter/Counter";
 
 type EmployeeProps = {
-  id: number;
   name: string;
   role: string;
 };
 
-const EmployeeCard = ({ id, name, role }: EmployeeProps) => {
-console.log(name, id, role)
+const EmployeeCard = ({ name, role }: EmployeeProps) => {
   return (
     <>
-    <h2>{name}</h2>
-    <h2>{role}</h2>
-    <Counter/>
+    <div className="employee-card">
+      <h2 id="employee-card__name">{name}</h2>
+      <h2 id="employee-card__role">{role}</h2>
+      <Counter/>
+    </div>
+      
     </>
   )
 }
