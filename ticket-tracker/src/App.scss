@@ -1,0 +1,29 @@
+.outer-wrapper {
+  border: solid 2px whitesmoke;
+  width: 100vw;
+  h2 {
+    text-align: center;
+  }
+  form {
+    padding: 50px;
+    text-align: center;
+    input {
+        background-color: whitesmoke;
+        color: rgb(20, 44, 91);
+      }
+  }
+  .employee-container {
+    border: solid 2px black;
+    display: flex;
+    .all-employees {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    .filtered-employees {
+      color: red;
+    }
+
+  }
+}
+
