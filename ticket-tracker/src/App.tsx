@@ -1,20 +1,21 @@
 import "./App.scss";
 import EmployeeCard from './components/EmployeeCard/EmployeeCard'
 import employees from './data/team'
-import { useState } from 'react'
-import Employee from './data/types/Employee'
+import { FormEvent, useState } from 'react'
 
 function App() {
 const [searchInput, setSearchInput] = useState("")
 
-const handleInput = (e: Event) => {
-  setSearchInput((e.target as HTMLFormElement).value)
+const handleInput = (e: FormEvent<HTMLInputElement>) => {
+  setSearchInput(e.currentTarget.value)
 }
 
-const filteredEmployees: any[] = employees.filter((employee) =>
-  employee.name.toLowerCase().includes(searchInput.toLowerCase()))
+let filteredEmployees: any[] = [];
 
-console.log(filteredEmployees)
+if (searchInput.length >= 3) {
+filteredEmployees = employees.filter((employee) =>
+  employee.name.toLowerCase().includes(searchInput.toLowerCase()))
+}
 
 return (
     <div className="outer-wrapper">
@@ -23,20 +24,24 @@ return (
         <label htmlFor="">Search Employee by Name:   </label>
         <input type="text" onInput={handleInput} /> 
       </form>
-    {/* I can get rid of this error by changing index.d.ts - the expected type to onInput can be set to any  */}
+    <div className="employee-container">
+      {searchInput.length >= 3 &&
       <div className="filtered-employees">
-      {(filteredEmployees).map(employee => (
+        {filteredEmployees.map(employee => (
         <EmployeeCard key={employee.id}
         name={employee.name} 
         role={employee.role}/>
       ))}
       </div>
+      }
       <div className="all-employees">
-      {employees.map(employee => (
+      {searchInput.length < 3 && 
+      employees.map(employee => (
         <EmployeeCard key={employee.id}
         name={employee.name} 
         role={employee.role}/>
       ))}
+      </div>
       </div>
     </div>
   )

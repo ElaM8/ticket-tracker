@@ -12,5 +12,18 @@
         color: rgb(20, 44, 91);
       }
   }
+  .employee-container {
+    border: solid 2px black;
+    display: flex;
+    .all-employees {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    .filtered-employees {
+      color: red;
+    }
+
+  }
 }
 
