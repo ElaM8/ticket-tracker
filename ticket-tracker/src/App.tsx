@@ -1,50 +1,25 @@
 import "./App.scss";
-import EmployeeCard from './components/EmployeeCard/EmployeeCard'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import employees from './data/team'
-import { FormEvent, useState } from 'react'
+import Home from './components/Home/Home'
+import TicketTracker from "./components/Ticket-Tracker/Ticket-Tracker";
+import ProfileView from "./components/ProfileView/ProfileView"
+import Nav from "./components/Nav/Nav";
 
-function App() {
-const [searchInput, setSearchInput] = useState("")
-
-const handleInput = (e: FormEvent<HTMLInputElement>) => {
-  setSearchInput(e.currentTarget.value)
-}
-
-let filteredEmployees: any[] = [];
-
-if (searchInput.length >= 3) {
-filteredEmployees = employees.filter((employee) =>
-  employee.name.toLowerCase().includes(searchInput.toLowerCase()))
-}
+const App = () => {
 
 return (
-    <div className="outer-wrapper">
-      <h1>Ticket Tracker</h1>
-      <form action="">
-        <label htmlFor="">Search Employee by Name:   </label>
-        <input type="text" onInput={handleInput} /> 
-      </form>
-    <div className="employee-container">
-      {searchInput.length >= 3 &&
-      <div className="filtered-employees">
-        {filteredEmployees.map(employee => (
-        <EmployeeCard key={employee.id}
-        name={employee.name} 
-        role={employee.role}/>
-      ))}
-      </div>
-      }
-      <div className="all-employees">
-      {searchInput.length < 3 && 
-      employees.map(employee => (
-        <EmployeeCard key={employee.id}
-        name={employee.name} 
-        role={employee.role}/>
-      ))}
-      </div>
-      </div>
-    </div>
+  <>
+  <BrowserRouter>
+    <Nav/>
+    <Routes>
+      <Route path="/home" element={<Home employees={employees}/>}/>
+      <Route path="/ticket-tracker" element={<TicketTracker employees={employees}/>}></Route>
+      <Route path="/profile/:empid" element={<ProfileView employees={employees}/>}></Route>
+    </Routes>
+    </BrowserRouter>
+    </>
   )
 }
 
-export default App
+export default App;
